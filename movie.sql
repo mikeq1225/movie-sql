@@ -118,8 +118,22 @@ FROM movies
 LEFT JOIN links ON links.movie_id = movies.id
 WHERE movies.title LIKE "%(2005)%" AND  movies.genres LIKE "%Comedy%"
 
--- 18. Don't think this works
+-- 18.
 SELECT movies.title, ratings.rating 
 FROM movies 
 LEFT JOIN ratings ON ratings.movie_id = movies.id
-WHERE ratings.rating LIKE ''
+WHERE ISNULL(ratings.rating)
+
+-- 19.
+SELECT movies.title, AVG(ratings.rating)
+FROM movies  
+LEFT JOIN ratings ON ratings.movie_id = movies.id
+WHERE movies.id =3
+GROUP BY movies.title
+
+-- 20.
+SELECT movies.title, COUNT(ratings.rating)
+FROM movies  
+LEFT JOIN ratings ON ratings.movie_id = movies.id
+WHERE movies.id =4
+GROUP BY movies.title
