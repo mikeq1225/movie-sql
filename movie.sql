@@ -137,3 +137,9 @@ FROM movies
 LEFT JOIN ratings ON ratings.movie_id = movies.id
 WHERE movies.id =4
 GROUP BY movies.title
+
+-- 21.
+SELECT movies.genres, COUNT(movies.genres)
+FROM movies  
+WHERE movies.genres ="Comedy"
+GROUP BY movies.genres
